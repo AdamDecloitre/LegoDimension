@@ -8,14 +8,15 @@ The project website is a lightweight static site:
 
 - `index.html` is the English-language landing page.
 - `assets/css/styles.css` contains its responsive styling.
-- `assets/images/` is ready for project artwork and screenshots.
+- `assets/images/logo.png` is the LEGO Dimensions logo used on the page.
+- `assets/images/icon.png` is used for the browser tab icon and site branding.
 - `mods.json` provides the data shown in the community mod catalog.
 
 To preview the website, serve the repository root with any static web server and open its local address. The mod catalog uses `fetch`, so it needs to be served over HTTP rather than opened directly as a `file://` page.
 
 ## Launcher
 
-Use the **Get the launcher** link on the website to visit the latest project release on GitHub. If no release is available yet, check the repository for updates.
+The website's launcher buttons download `assets/launcher/LEGO-Dimensions-Launcher.exe` directly. Add the Windows installer at that path when it is ready; the download buttons are prepared but the executable is not included yet.
 
 ## Mod catalog format
 
