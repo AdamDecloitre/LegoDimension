@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101016">
+    <meta name="description" content="A community-made launcher and mod catalog for LEGO Dimensions on PC.">
+    <title>LEGO Dimensions — The Portal Project</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="The Portal Project home">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span class="brand-name">THE PORTAL <b>PROJECT</b></span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#mods">Mod catalog</a>
+        <a class="nav-download" href="https://github.com/AdamDecloitre/LegoDimension/releases/latest">Get the launcher <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> A fan-made project for PC</p>
+          <h1>One portal.<br><span>Infinite</span> possibilities.</h1>
+          <p class="hero-description">Bring your LEGO Dimensions adventure to PC. Set up your experience, discover community mods, and get ready to jump between worlds.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/AdamDecloitre/LegoDimension/releases/latest">
+              <span class="download-icon" aria-hidden="true">↓</span> Get the launcher
+            </a>
+            <a class="text-link" href="#mods">Explore the mod catalog <span aria-hidden="true">→</span></a>
+          </div>
+          <p class="platform-note">Community-built for Windows · LEGO Dimensions for Wii U / Cemu</p>
+        </div>
+
+        <div class="portal-art" aria-hidden="true">
+          <div class="portal-grid"></div>
+          <div class="portal-ring portal-ring-outer"></div>
+          <div class="portal-ring portal-ring-inner"></div>
+          <div class="portal-core"></div>
+          <div class="portal-spark spark-one"></div>
+          <div class="portal-spark spark-two"></div>
+          <div class="portal-spark spark-three"></div>
+          <div class="portal-caption"><span>DIMENSIONAL GATE</span><b>READY TO BUILD</b></div>
+        </div>
+        <div class="hero-label" aria-hidden="true">01 <span>—</span> THE ADVENTURE STARTS HERE</div>
+      </section>
+
+      <section class="feature-section" id="features">
+        <div class="section-heading">
+          <p class="eyebrow">YOUR ADVENTURE, CONNECTED</p>
+          <h2>Everything in one place.</h2>
+          <p>A community launcher designed to make your next dimension easier to reach.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span class="feature-number">01 / SET UP</span>
+            <div class="feature-symbol symbol-gate" aria-hidden="true">◈</div>
+            <h3>Ready for the portal</h3>
+            <p>Keep your PC setup and LEGO Dimensions essentials together in one simple launcher.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">02 / DISCOVER</span>
+            <div class="feature-symbol symbol-brick" aria-hidden="true">▦</div>
+            <h3>Mods made for play</h3>
+            <p>Browse community-made additions and find new ways to build your adventure.</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-number">03 / PLAY</span>
+            <div class="feature-symbol symbol-signal" aria-hidden="true">⌁</div>
+            <h3>Stay in control</h3>
+            <p>Explore the project’s ToyPad tools and bring the familiar portal experience to your setup.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="catalog-section" id="mods">
+        <div class="catalog-heading">
+          <div>
+            <p class="eyebrow">BUILT BY THE COMMUNITY</p>
+            <h2>Explore new dimensions.</h2>
+          </div>
+          <p class="catalog-intro">A growing collection of community projects. Check each mod’s details before installing.</p>
+        </div>
+        <div class="mod-grid" id="mod-list" aria-live="polite">
+          <p class="catalog-message">Loading the mod catalog…</p>
+        </div>
+        <p class="catalog-footnote">Mods are community-made and are not affiliated with or endorsed by the original creators.</p>
+      </section>
+
+      <section class="download-banner">
+        <div class="banner-copy">
+          <p class="eyebrow">YOUR NEXT ADVENTURE AWAITS</p>
+          <h2>Ready to cross over?</h2>
+          <p>Visit the project releases to get the latest launcher build.</p>
+        </div>
+        <a class="button button-light" href="https://github.com/AdamDecloitre/LegoDimension/releases/latest">View latest release <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"><span></span></span>
+        <span class="brand-name">THE PORTAL <b>PROJECT</b></span>
+      </a>
+      <p>A fan-made project. LEGO and LEGO Dimensions are trademarks of the LEGO Group, which does not sponsor, authorize or endorse this project.</p>
+      <a class="footer-link" href="https://github.com/AdamDecloitre/LegoDimension">View on GitHub <span aria-hidden="true">↗</span></a>
+    </footer>
+
+    <script>
+      const modList = document.querySelector("#mod-list");
+
+      fetch("mods.json")
+        .then((response) => {
+          if (!response.ok) throw new Error(`Catalog request failed (${response.status})`);
+          return response.json();
+        })
+        .then((mods) => {
+          if (!Array.isArray(mods) || mods.length === 0) {
+            modList.innerHTML = '<p class="catalog-message">No mods are listed yet. Check back soon.</p>';
+            return;
+          }
+
+          modList.replaceChildren(...mods.map((mod, index) => {
+            const card = document.createElement("article");
+            card.className = "mod-card";
+
+            const number = document.createElement("span");
+            number.className = "mod-number";
+            number.textContent = `MOD / ${String(index + 1).padStart(2, "0")}`;
+
+            const title = document.createElement("h3");
+            title.textContent = typeof mod.name === "string" ? mod.name : "Community mod";
+
+            const description = document.createElement("p");
+            description.textContent = typeof mod.description === "string" ? mod.description : "A community-made addition to your adventure.";
+
+            card.append(number, title, description);
+
+            if (typeof mod.downloadUrl === "string") {
+              try {
+                const url = new URL(mod.downloadUrl);
+                const isPlaceholder = url.pathname.toLowerCase().includes("ton-pseudo") || url.pathname.toLowerCase().includes("ton-repo");
+                if (url.protocol === "https:" && !isPlaceholder) {
+                  const link = document.createElement("a");
+                  link.className = "mod-link";
+                  link.href = url.href;
+                  link.target = "_blank";
+                  link.rel = "noopener noreferrer";
+                  link.textContent = "Get this mod ↗";
+                  card.append(link);
+                } else {
+                  const note = document.createElement("span");
+                  note.className = "mod-unavailable";
+                  note.textContent = "Download link coming soon";
+                  card.append(note);
+                }
+              } catch {
+                const note = document.createElement("span");
+                note.className = "mod-unavailable";
+                note.textContent = "Download link unavailable";
+                card.append(note);
+              }
+            }
+
+            return card;
+          }));
+        })
+        .catch(() => {
+          modList.innerHTML = '<p class="catalog-message">The catalog could not be loaded. Please try again later.</p>';
+        });
+    </script>
+  </body>
+</html>

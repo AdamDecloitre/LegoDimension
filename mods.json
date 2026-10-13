@@ -1,0 +1,14 @@
+[
+  {
+    "id": "sonic-pack",
+    "name": "Sonic Custom Pack",
+    "description": "Adds custom abilities and physics adjustments.",
+    "downloadUrl": "https://github.com/TON-PSEUDO/TON-REPO/releases/download/v1.0.0/sonic_mod.zip"
+  },
+  {
+    "id": "ttg-pack",
+    "name": "Teen Titans Go! Expansion",
+    "description": "Custom characters with flight and laser capabilities.",
+    "downloadUrl": "https://github.com/TON-PSEUDO/TON-REPO/releases/download/v1.0.0/ttg_mod.zip"
+  }
+]
